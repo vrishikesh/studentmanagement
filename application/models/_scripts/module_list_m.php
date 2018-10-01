@@ -18,8 +18,10 @@ class Module_list_m extends CI_Model {
                 );
             }
         }
-        $this->db->insert_batch('module_list', $data);
-
+        if ( $data ) {
+            $this->db->insert_batch('module_list', $data);
+        }
+        
     }
 
     public function check_if_exists( $url ) {
