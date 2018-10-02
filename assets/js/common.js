@@ -11,7 +11,7 @@ jQuery(document).ajaxComplete(function () {
 
 jQuery(document).ready(function () {
     
-    jQuery(document).on('click', 'a:not([href="#"])', function(e) {
+    jQuery(document).on('click', 'a:not([href="#"]):not(.not-ajax)', function(e) {
 
         e.preventDefault()
         jQuery.ajax({
@@ -30,5 +30,11 @@ jQuery(document).ready(function () {
         })
 
     })
+
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' /* optional */
+    });
 
 })

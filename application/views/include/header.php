@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo FRAMEWORK_URL ?>adminlte/css/adminlte.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>icheck/square/blue.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo FRAMEWORK_URL ?>adminlte/css/skins/_all-skins.min.css">
@@ -31,7 +33,9 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<?php $logged_in = $this->user->logged_in(); ?>
+<body class="hold-transition skin-blue sidebar-mini <?php echo ! $logged_in ? 'login-page' : '' ?>">
+<?php if ( $logged_in ) { ?>
 <div id="overlay"></div>
 <div class="wrapper">
 
@@ -286,7 +290,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo SITE_URL . 'login/login/logout' ?>" class="btn btn-default btn-flat not-ajax">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -299,3 +303,4 @@
       </div>
     </nav>
   </header>
+  <?php } ?>
