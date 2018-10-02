@@ -1,3 +1,4 @@
+<?php if ( $this->user->logged_in() ) { ?>
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
@@ -203,6 +204,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<?php } ?>
 
 <!-- jQuery 3 -->
 <script src="<?php echo PLUGIN_URL ?>jquery/dist/jquery.min.js"></script>
@@ -212,6 +214,9 @@
 <script src="<?php echo PLUGIN_URL ?>fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo FRAMEWORK_URL ?>adminlte/js/adminlte.min.js"></script>
+<!-- iCheck -->
+<script src="<?php echo PLUGIN_URL ?>icheck/icheck.min.js"></script>
+<script src="<?php echo PLUGIN_URL ?>pace/pace.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo FRAMEWORK_URL ?>adminlte/js/demo.js"></script>
 <script src="<?php echo ASSETS_URL ?>js/common.js"></script>
