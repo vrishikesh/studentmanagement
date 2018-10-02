@@ -2,16 +2,12 @@ base_url = jQuery('#base_url').val()
 site_url = jQuery('#site_url').val()
 
 jQuery(document).ajaxStart(function () {
-    jQuery('#overlay').css('display', 'block');
-})
-
-jQuery(document).ajaxComplete(function () {
-    jQuery('#overlay').css('display', '');
+    Pace.restart();
 })
 
 jQuery(document).ready(function () {
     
-    jQuery(document).on('click', 'a:not([href="#"])', function(e) {
+    jQuery(document).on('click', 'a:not([href="#"]):not(.not-ajax)', function(e) {
 
         e.preventDefault()
         jQuery.ajax({
@@ -30,5 +26,11 @@ jQuery(document).ready(function () {
         })
 
     })
+
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' /* optional */
+    });
 
 })

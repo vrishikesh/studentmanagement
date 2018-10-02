@@ -73,7 +73,7 @@ class Admin_Controller extends MY_Controller
 
         if ( ! $this->user->logged_in())
         {
-            redirect('login', 'refresh');
+            redirect('login/login', 'refresh');
         }
         else
         {
@@ -95,9 +95,9 @@ class Public_Controller extends MY_Controller
 	{
 		parent::__construct();
 
-        if ($this->user->logged_in())
+        if ($this->user->logged_in() AND $this->router->method !== 'logout')
         {
-            redirect('dashboard', 'refresh');
+            redirect('student/student_details', 'refresh');
         }
 	}
 }

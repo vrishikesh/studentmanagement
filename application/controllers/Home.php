@@ -5,6 +5,6 @@ class Home extends Public_Controller {
 
 	public function index()
 	{
-		$this->render->view('tables');
+		$this->render->view('login/login');
 	}
 }

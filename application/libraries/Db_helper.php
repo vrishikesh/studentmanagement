@@ -49,15 +49,13 @@ class Db_helper {
     public function insert_data($table, $data = [])
     {
         $data['USER_ID'] = $this->CI->session->user_id;
-        $data['CREATED_ON'] = date('Y-m-d H:i:s');
         return $this->CI->db->insert($table, $data);
     }
 
     public function update_data($table, $data = [], $where = [])
     {
-        $data['UPDATED_ON'] = date('Y-m-d H:i:s');
         $this->CI->db->where($where);
-        return $this->CI->db->insert($table, $data);
+        return $this->CI->db->update($table, $data);
     }
 
 }
