@@ -2,11 +2,7 @@ base_url = jQuery('#base_url').val()
 site_url = jQuery('#site_url').val()
 
 jQuery(document).ajaxStart(function () {
-    jQuery('#overlay').css('display', 'block');
-})
-
-jQuery(document).ajaxComplete(function () {
-    jQuery('#overlay').css('display', '');
+    Pace.restart();
 })
 
 jQuery(document).ready(function () {

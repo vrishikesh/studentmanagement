@@ -216,6 +216,7 @@
 <script src="<?php echo FRAMEWORK_URL ?>adminlte/js/adminlte.min.js"></script>
 <!-- iCheck -->
 <script src="<?php echo PLUGIN_URL ?>icheck/icheck.min.js"></script>
+<script src="<?php echo PLUGIN_URL ?>pace/pace.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo FRAMEWORK_URL ?>adminlte/js/demo.js"></script>
 <script src="<?php echo ASSETS_URL ?>js/common.js"></script>

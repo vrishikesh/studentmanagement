@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="<?php echo FRAMEWORK_URL ?>adminlte/css/adminlte.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>icheck/square/blue.css">
+  <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>pace/pace.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo FRAMEWORK_URL ?>adminlte/css/skins/_all-skins.min.css">
@@ -36,7 +37,6 @@
 <?php $logged_in = $this->user->logged_in(); ?>
 <body class="hold-transition skin-blue sidebar-mini <?php echo ! $logged_in ? 'login-page' : '' ?>">
 <?php if ( $logged_in ) { ?>
-<div id="overlay"></div>
 <div class="wrapper">
 
   <header class="main-header">
