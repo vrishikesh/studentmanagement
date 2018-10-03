@@ -1,6 +1,6 @@
 <?php
 
-class Db_helper {
+class CI_Db_helper {
 
     protected $CI;
 
@@ -48,12 +48,14 @@ class Db_helper {
 
     public function insert_data($table, $data = [])
     {
-        $data['USER_ID'] = $this->CI->session->user_id;
+        $data['USER_ID'] = $this->CI->user->user_id();
+        $data['CREATED_BY'] = $this->CI->user->user_id();
         return $this->CI->db->insert($table, $data);
     }
 
     public function update_data($table, $data = [], $where = [])
     {
+        $data['UPDATED_BY'] = $this->CI->user->user_id();
         $this->CI->db->where($where);
         return $this->CI->db->update($table, $data);
     }
