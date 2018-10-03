@@ -13,7 +13,7 @@ class Users_m extends CI_Model {
                 ->limit(1)
                 ->get($this->table)
                 ->row_array();
-        if ( empty( $row ) ) return FALSE;
+        if ( empty( $row ) ) return [];
 
         return password_verify($password, $row['PASSWORD']) ? $row : [];
         

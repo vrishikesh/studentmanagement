@@ -9,10 +9,10 @@ class MY_Controller extends CI_Controller
 
         /* COMMON :: ADMIN & PUBLIC */
         /* Load */
-        $this->load->database();
-        $this->load->library(array('form_validation', 'mobile_detect', 'page_title', 'breadcrumbs', 'session', 'user', 'db_helper' => 'dbh', 'render'));
-        $this->load->helper(array('array', 'language', 'url', 'menu'));
-
+        // $this->output->enable_profiler();
+        $this->load->library(array('form_validation', 'mobile_detect', 'page_title', 'breadcrumbs', 'session', 'user', 'render'));
+        $this->load->helper(array('array', 'language', 'url', 'menu', 'constant'));
+        
         /* Data */
         // $this->data['lang']           = element($this->config->item('language'), $this->config->item('language_abbr'));
         $this->data['charset']        = $this->config->item('charset');
@@ -56,11 +56,6 @@ class MY_Controller extends CI_Controller
             $this->data['mobile_ie'] = FALSE;
         }
 
-        define('BASE_URL', base_url());
-        define('SITE_URL', site_url() . '/');
-        define('ASSETS_URL', BASE_URL . 'assets/');
-        define('FRAMEWORK_URL', ASSETS_URL . 'frameworks/');
-        define('PLUGIN_URL', ASSETS_URL . 'plugins/');
 	}
 }
 

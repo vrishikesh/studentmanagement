@@ -1,0 +1,31 @@
+<?php
+
+1. Class and File names must be in snake case with first letter being capital
+    - My_class_name
+
+2. function and variable names must be in snake case
+    - my_function_name()
+    - my_variable_name
+
+3. Enum classes must in pascal case
+    - MyEnumName
+
+4. Model names must be based on table name not controller name
+
+5. Tables names must be in snake case
+
+6. Table columns and PHP constants must be in constant case
+    - MY_COLUMN_NAME
+    - MY_CONSTANT_NAME
+
+7. Always create 6 additional fields when creating a table
+    - IS_DELETED
+    - USER_ID
+    - CREATED_BY
+    - CREATED_ON
+    - UPDATED_BY
+    - UPDATED_ON
+
+8. When taking an int datatype if the value cannot go negative always assign it an unsigned attribute
+
+9. When taking an int datatype if the value is 0/1 then always select datatype as tinyint and size as 1

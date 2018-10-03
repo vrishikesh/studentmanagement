@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends Public_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+        // load model, library or helper
+
+        $this->load->model(MODEL_PATH . 'user/users_m');
+    }
+
 	public function index()
 	{
 		$this->render->view('login/login');
@@ -10,7 +18,6 @@ class Login extends Public_Controller {
     
     public function validate_login()
     {
-        $this->load->model('user/users_m');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
@@ -34,7 +41,6 @@ class Login extends Public_Controller {
         $data['logged_in'] = TRUE;
         $this->session->set_userdata( $data );
         redirect('student/student_details');
-        
     }
 
     public function logout()
