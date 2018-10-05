@@ -9,13 +9,17 @@ jQuery(document).ready(function () {
     
     jQuery(document).on('click', 'a:not([href="#"]):not(.not-ajax)', function(e) {
 
+        var node = this
         e.preventDefault()
         jQuery.ajax({
-            url: this.href,
+            url: node.href,
             dataType: 'html',
             success: function ( r ) {
                 if ( r.trim() ) {
                     jQuery('.content-wrapper').html( r )
+                    // var ix = node.href.lastIndexOf('/')
+                    // var page = node.href.substring(ix)
+                    // history.pushState({}, page, node.href)
                 } else {
                     console.log( r )
                 }

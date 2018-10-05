@@ -1,12 +1,12 @@
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?php echo BASE_URL ?>"><b>School</b>Management</a>
+    <a href="<?php echo Url::Site ?>"><b>School</b>Management</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="<?php echo SITE_URL . 'login/login/validate_login' ?>" method="post">
+    <form action="<?php echo Url::Site . 'login/login/validate_login' ?>" method="post">
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Email" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

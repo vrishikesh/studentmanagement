@@ -7,7 +7,7 @@ class Populate_module extends MY_Controller {
         parent::__construct();
         // load model, library or helper
 
-        $this->load->model(MODEL_PATH . '_scripts/module_list_m');
+        $this->load->model(Path::Model . '_scripts/module_list_m');
     }
 
     public function index()
