@@ -3,9 +3,9 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 0.0.1
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 <a href="#">Inspire Studios</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -217,6 +217,8 @@
 <!-- iCheck -->
 <script src="<?php echo Url::Plugin ?>icheck/icheck.min.js"></script>
 <script src="<?php echo Url::Plugin ?>pace/pace.min.js"></script>
+<script src="<?php echo Url::Plugin ?>datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo Url::Plugin ?>datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo Url::Framework ?>adminlte/js/demo.js"></script>
 <script src="<?php echo Url::Assets ?>js/common.js"></script>

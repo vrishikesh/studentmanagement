@@ -20,6 +20,8 @@ jQuery(document).ready(function () {
                     // var ix = node.href.lastIndexOf('/')
                     // var page = node.href.substring(ix)
                     // history.pushState({}, page, node.href)
+
+                    updateUIOnPage()
                 } else {
                     console.log( r )
                 }
@@ -31,10 +33,31 @@ jQuery(document).ready(function () {
 
     })
 
+    jQuery(document).on('click', 'a[href="#"]', function(e) {
+
+        e.preventDefault()
+
+    })
+
+    updateUIOnPage()
+
+})
+
+function updateUIOnPage(params) {
+    
     $('input').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
         increaseArea: '20%' /* optional */
-    });
+    })
 
-})
+    $('.dataTable').DataTable({
+        'paging'      : true,
+        'lengthChange': false,
+        'searching'   : false,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+    })
+
+}
