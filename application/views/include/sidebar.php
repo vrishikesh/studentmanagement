@@ -5,7 +5,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo Url::Framework ?>adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Admin</p>
@@ -41,16 +41,29 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Student Detail</span>
+            <span>Student Manager</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL ?>"><i class="fa fa-circle-o"></i> Student Manager</a></li>
+            <li><a href="<?php echo Url::Site . 'student/student_details' ?>"><i class="fa fa-circle-o"></i> Student Details</a></li>
             <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
             <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
             <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Administration</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo Url::Site . 'user/users' ?>"><i class="fa fa-circle-o"></i> Users</a></li>
+            <li><a href="<?php echo Url::Site . 'user/user_roles' ?>"><i class="fa fa-circle-o"></i> User Roles</a></li>
           </ul>
         </li>
       </ul>

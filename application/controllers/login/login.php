@@ -10,7 +10,7 @@ class Login extends Public_Controller {
         parent::__construct();
         // load model, library or helper
 
-        $this->load->model(MODEL_PATH . 'user/users_m');
+        $this->load->model(Path::Model . 'user/users_m');
     }
 
 >>>>>>> r

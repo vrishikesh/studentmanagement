@@ -1,17 +1,14 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-    <?php echo $title ?>
-    <small><?php echo $short_desc ?></small>
+    Users
+    <small>user list</small>
     </h1>
-    <?php if ( isset( $breadcrumb ) ) {
-        echo '<ol class="breadcrumb">';
-        foreach ($breadcrumb as $path) {
-            echo "<li class='{$path['class']}'><a href='{$path['url']}'>{$path['name']}</a></li>";
-        }
-        echo '</ol>';
-    } ?>
-    
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Administration</a></li>
+    <li class="active">Users</li>
+    </ol>
 </section>
 
 <!-- Main content -->
@@ -20,38 +17,49 @@
     <div class="col-xs-12">
         <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title"><?php echo $title ?></h3>
-            <?php if ( isset( $listButtons ) ) { ?>
-                <div class="box-tools pull-right">
-                    <?php foreach ($listButtons as $listButton) {
-                        echo "<{$listButton['type']} type='{$listButton['type']}' {$listButton['attr']}>{$listButton['text']}</{$listButton['type']}>";
-                    } ?>
-                </div>
-            <?php } ?>
+            <h3 class="box-title">Users</h3>
+            <div class="box-tools pull-right">
+                <button type="button" data-toggle="modal" class="btn btn-block btn-success" data-target="#modal-default"><i class="fa fa-plus"></i> Add User</button>
+            </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table id="example2" class="table table-bordered table-hover dataTable">
+            <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th><?php echo implode('</th><th>', $thead) ?></th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>User Role</th>
+                <th>Last Login</th>
+                <th>Is Online</th>
+                <th>Brand</th>
             </tr>
             </thead>
             <tbody>
             <?php 
-            if ( ! empty( $tbody ) ) {
-                foreach ($tbody as $row) { ?>
+            if ( ! empty( $users ) ) {
+                foreach ($users as $user) { ?>
                 <tr>
-                    <td><?php echo implode('</td><td>', $row) ?></td>
+                    <td><?php echo $user->USERNAME ?></td>
+                    <td><?php echo $user->EMAIL ?></td>
+                    <td><?php echo $user->USER_ROLE ?></td>
+                    <td><?php echo $user->LAST_LOGIN ?></td>
+                    <td><?php echo $user->ACTIVE ?></td>
+                    <td><?php echo $user->OA_BRAND_ID ?></td>
                 </tr>
             <?php }
             } else { ?>
-                <tr><td colspan="<?php echo count($thead) ?>">No Records Found</td></tr>
+                <tr><td colspan="6"></tr>
             <?php } ?>
             </tbody>
             <tfoot>
             <tr>
-                <th><?php echo implode('</th><th>', $thead) ?></th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>User Role</th>
+                <th>Last Login</th>
+                <th>Is Online</th>
+                <th>Brand</th>
             </tr>
             </tfoot>
             </table>

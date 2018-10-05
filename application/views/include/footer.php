@@ -3,9 +3,9 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 0.0.1
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 <a href="#">Inspire Studios</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -207,18 +207,20 @@
 <?php } ?>
 
 <!-- jQuery 3 -->
-<script src="<?php echo PLUGIN_URL ?>jquery/dist/jquery.min.js"></script>
+<script src="<?php echo Url::Plugin ?>jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="<?php echo PLUGIN_URL ?>bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo Url::Plugin ?>bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="<?php echo PLUGIN_URL ?>fastclick/lib/fastclick.js"></script>
+<script src="<?php echo Url::Plugin ?>fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo FRAMEWORK_URL ?>adminlte/js/adminlte.min.js"></script>
+<script src="<?php echo Url::Framework ?>adminlte/js/adminlte.min.js"></script>
 <!-- iCheck -->
-<script src="<?php echo PLUGIN_URL ?>icheck/icheck.min.js"></script>
-<script src="<?php echo PLUGIN_URL ?>pace/pace.min.js"></script>
+<script src="<?php echo Url::Plugin ?>icheck/icheck.min.js"></script>
+<script src="<?php echo Url::Plugin ?>pace/pace.min.js"></script>
+<script src="<?php echo Url::Plugin ?>datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo Url::Plugin ?>datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo FRAMEWORK_URL ?>adminlte/js/demo.js"></script>
-<script src="<?php echo ASSETS_URL ?>js/common.js"></script>
+<script src="<?php echo Url::Framework ?>adminlte/js/demo.js"></script>
+<script src="<?php echo Url::Assets ?>js/common.js"></script>
 </body>
 </html>

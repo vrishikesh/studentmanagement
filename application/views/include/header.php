@@ -5,24 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>School Management</title>
   <input type="hidden" id="base_url" value="<?php echo BASE_URL ?>" />
-  <input type="hidden" id="site_url" value="<?php echo SITE_URL ?>" />
+  <input type="hidden" id="site_url" value="<?php echo Url::Site ?>" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo FRAMEWORK_URL ?>adminlte/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Framework ?>adminlte/css/adminlte.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>icheck/square/blue.css">
-  <link rel="stylesheet" href="<?php echo PLUGIN_URL ?>pace/pace.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>icheck/square/blue.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>pace/pace.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo FRAMEWORK_URL ?>adminlte/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="<?php echo ASSETS_URL ?>css/common.css">
+  <link rel="stylesheet" href="<?php echo Url::Framework ?>adminlte/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Assets ?>css/common.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,7 +73,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo Url::Framework ?>adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -86,7 +86,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo Url::Framework ?>adminlte/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -98,7 +98,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo Url::Framework ?>adminlte/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -110,7 +110,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo Url::Framework ?>adminlte/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -122,7 +122,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo Url::Framework ?>adminlte/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -256,13 +256,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo Url::Framework ?>adminlte/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo FRAMEWORK_URL ?>adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo Url::Framework ?>adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -290,7 +290,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo SITE_URL . 'login/login/logout' ?>" class="btn btn-default btn-flat not-ajax">Sign out</a>
+                  <a href="<?php echo Url::Site . 'login/login/logout' ?>" class="btn btn-default btn-flat not-ajax">Sign out</a>
                 </div>
               </li>
             </ul>
