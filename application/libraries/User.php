@@ -27,10 +27,28 @@ class User {
         return $this->CI->session->user_id;
 
     }
+    
+    public function user_role_id() {
 
-    public function brand_id() {
+        return $this->CI->session->user_role_id;
 
-        return $this->CI->session->brand_id;
+    }
+
+    public function oa_id() {
+
+        return $this->CI->session->oa_id;
+
+    }
+
+    public function oa_brand_id() {
+
+        return $this->CI->session->oa_brand_id;
+
+    }
+
+    public function permission_list() {
+
+        return $this->CI->session->permission_list;
 
     }
 

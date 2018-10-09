@@ -13,7 +13,7 @@ class Student_details extends Admin_Controller {
 
 	public function index()
 	{
-		// var_dump($this->dbh->get_all_data('users')->result());
+		// var_dump($this->dbh->all('users')->result());
 		$this->render->view('tables');
 	}
 }

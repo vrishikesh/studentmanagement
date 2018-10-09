@@ -9,6 +9,7 @@ class Login extends Public_Controller {
         // load model, library or helper
 
         $this->load->model(Path::Model . 'user/users_m');
+        $this->load->model(Path::Model . 'user/user_roles_m');
     }
 
 	public function index()
@@ -40,6 +41,8 @@ class Login extends Public_Controller {
         unset( $data['PASSWORD'] );
         $data['logged_in'] = TRUE;
         $this->session->set_userdata( $data );
+        $this->session->set_userdata( 'permission_list', $this->user_roles_m->get_module_list() );
+
         redirect('student/student_details');
     }
 

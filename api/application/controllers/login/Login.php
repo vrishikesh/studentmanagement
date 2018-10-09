@@ -30,7 +30,7 @@ class Login extends REST_Controller {
 
     public function validate_login_get()
     {
-        $data = $this->dbh->get_all_data('users')->result();
+        $data = $this->dbh->all('users')->result();
         if ( empty( $data ) )
         {
             $this->set_response([

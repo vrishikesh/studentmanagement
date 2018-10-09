@@ -51,7 +51,7 @@ class Users extends Admin_Controller {
 			'Brand'
 		);
 
-		$data['tbody'] = $this->dbh->get_all_data('users_vw', 'USERNAME, EMAIL, USER_ROLE, LAST_LOGIN, ACTIVE, OA_BRAND_ID')->result_array();
+		$data['tbody'] = $this->dbh->all('users_vw', 'USERNAME, EMAIL, USER_ROLE, LAST_LOGIN, ACTIVE, OA_BRAND_ID')->result_array();
 		$this->render->view('datatables', $data);
 	}
 }

@@ -8,50 +8,51 @@ class User_roles extends Admin_Controller {
 		parent::__construct();
 		// load model, library or helper
 
-		
+		$this->load->model(Path::Model . 'user/user_roles_m');
 	}
 
 	public function index()
 	{
-		$data['title'] = 'User Roles';
-		$data['short_desc'] = 'user role list';
+		$data['user_roles'] = $this->dbh->all('user_roles_vw', 'ID, NAME, DESCRIPTION, BGCOLOR, PERMISSIONS, IS_ADMIN, USER_ID', [], '', 'ID DESC')->result();
+		$data['generated_module_list'] = $this->generate_module_list();
+		$this->render->view('user/user_roles_v', $data);
+	}
 
-		$data['breadcrumb'] = array(
-			array(
-				'name' => '<i class="fa fa-dashboard"></i> Home',
-				'class' => '',
-				'url' => '#'
-			),
-			array(
-				'name' => 'Administration',
-				'class' => '',
-				'url' => '#'
-			),
-			array(
-				'name' => 'User Roles',
-				'class' => 'active',
-				'url' => '#'
-			),
+	public function generate_module_list() {
+
+		return $this->user_roles_m->generate_module_list( 0, $this->user->permission_list(), '' );
+
+	}
+
+	public function save() {
+
+		$id = $this->input->post('id');
+		$upsert_data = array(
+			'NAME' => $this->input->post('role_name'),
+			'DESCRIPTION' => $this->input->post('role_desc'),
+			'PERMISSIONS' => implode(',', array_keys( $this->input->post('module') ))
 		);
+		if ( ! $id ) {
 
-		$data['listButtons'] = array(
-			array(
-				'type' => 'button',
-				'text' => '<i class="fa fa-plus"></i> Add User Role',
-				'attr' => 'data-toggle="modal" class="btn btn-sm btn-success" data-target="#modal-default"'
-			)
-		);
+			$this->dbh->insert('user_roles', $upsert_data);
 
-		$data['thead'] = array(
-			'Role Name',
-			'Description',
-			'Color',
-			'Permissions',
-			'Is Admin',
-			'User',
-		);
+		} else {
 
-		$data['tbody'] = $this->dbh->get_all_data('user_roles_vw', 'NAME, DESCRIPTION, BGCOLOR, PERMISSIONS, IS_ADMIN, USER_ID')->result_array();
-		$this->render->view('datatables', $data);
+			$this->dbh->update('user_roles', $upsert_data, ['ID' => $id]);
+
+		}
+		$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('status' => TRUE)));
+
+	}
+
+	public function delete( $id ) {
+
+		$this->dbh->delete('user_roles', ['ID' => $id]);
+		$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('status' => TRUE)));
+
 	}
 }

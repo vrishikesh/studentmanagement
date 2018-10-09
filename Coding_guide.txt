@@ -18,13 +18,19 @@
     - MY_COLUMN_NAME
     - MY_CONSTANT_NAME
 
-7. Always create 6 additional fields when creating a table
+7. Always create 8 additional fields when creating a table
     - IS_DELETED
+    - OA_ID
+    - OA_BRAND_ID
     - USER_ID
     - CREATED_BY
     - CREATED_ON
     - UPDATED_BY
     - UPDATED_ON
+
+Query to add above 8 fields
+
+ALTER TABLE `table` ADD `IS_DELETED` INT(1) UNSIGNED NOT NULL DEFAULT '0', ADD `OA_ID` INT UNSIGNED NOT NULL DEFAULT '0', ADD `OA_BRAND_ID` INT UNSIGNED NOT NULL DEFAULT '0', ADD `USER_ID` INT UNSIGNED NOT NULL DEFAULT '0', ADD `CREATED_ON` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, ADD `UPDATED_ON` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL, ADD `CREATED_BY` INT UNSIGNED NULL DEFAULT NULL, ADD `UPDATED_BY` INT UNSIGNED NULL DEFAULT NULL;
 
 8. When taking an int datatype if the value cannot go negative always assign it an unsigned attribute
 
