@@ -41,7 +41,7 @@ class Login extends Public_Controller {
         unset( $data['PASSWORD'] );
         $data['logged_in'] = TRUE;
         $this->session->set_userdata( $data );
-        $this->session->set_userdata( 'permission_list', $this->user_roles_m->get_module_list() );
+        $this->session->set_userdata( 'permission_list', serialize( $this->user_roles_m->get_module_list() ) );
 
         redirect('student/student_details');
     }

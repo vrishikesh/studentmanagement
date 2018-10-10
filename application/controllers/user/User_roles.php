@@ -22,7 +22,7 @@ class User_roles extends Admin_Controller {
 
 	public function generate_module_list() {
 
-		return $this->user_roles_m->generate_module_list( 0, $this->user->permission_list(), '' );
+		return $this->user_roles_m->generate_module_list( 0, unserialize( $this->user->permission_list() ), '' );
 
 	}
 

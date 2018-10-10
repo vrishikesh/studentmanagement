@@ -35,7 +35,7 @@ class User_roles_m extends CI_Model {
 
     public function create_module_list() : string {
 
-        $permission_list = $this->user->permission_list();
+        $permission_list = unserialize( $this->user->permission_list() );
         return $this->create_child_list( 0, $permission_list, '' );
 
     }
