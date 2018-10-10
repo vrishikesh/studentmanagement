@@ -14,16 +14,23 @@ class CI_Db_helper {
      * Get all data
      * 
      **/
-    public function all($table, $select = '*', 
-                $where = [], $group_by = '', $order_by = '')
+    public function all(string $table, string $select = '*', 
+                array $where = [], string $group_by = '', string $order_by = '')
     {
         $where['IS_DELETED'] = 0;
-        return $this->CI->db
-                    ->select($select)
-                    ->where($where)
-                    ->group_by($group_by)
-                    ->order_by($order_by)
-                    ->get($table);
+        $this->CI->db->select($select);
+        $this->CI->db->where($where);
+        if( $group_by ) {
+
+            $this->CI->db->group_by($group_by);
+
+        }
+        if( $order_by ) {
+
+            $this->CI->db->order_by($order_by);
+
+        }
+        return $this->CI->db->get($table);
     }
 
     /**

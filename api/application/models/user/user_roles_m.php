@@ -75,7 +75,7 @@ class User_roles_m extends CI_Model {
                 
                 $isThisMultiMenu = $permission_list[ $row[ 'ID' ] ] ?? FALSE;
                 
-                $str .= '<div>' . $spaces . '<input type="checkbox" class="minimal" name="module['. $row[ 'ID' ] .']" value="1"> <label for="module['. $row[ 'ID' ] .']"><h5>'. $row['NAME'] .'</h5></label></div>';
+                $str .= '<div>' . $spaces . '<input type="checkbox" class="minimal" name="module['. $row[ 'ID' ] .']" value="1" data-id="'. $row[ 'ID' ] .'"> <label for="module['. $row[ 'ID' ] .']"><h5>'. $row['NAME'] .'</h5></label></div>';
                 $str .= $isThisMultiMenu ? $this->generate_module_list( $row[ 'ID' ], $permission_list, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' ) : '';
     
             }

@@ -120,13 +120,40 @@ function add_row() {
 
 }
 
-function edit_row( node, id, url ) {
+function edit_row( node, id, url, editCallback ) {
 
-    $('#id').val( id )
+    jQuery.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'get',
+        beforeSend: function() {
+            $(node).closest('tr').addClass('box').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>')
+        },
+        success: function ( r ) {
+            
+            if ( r.status == true ) {
+                
+                $('#id').val( id )
+                if ( typeof editCallback === 'function' ) {
+                    
+                    editCallback( r )
+
+                }
+                $('#modal-default').modal('show')
+                $(node).closest('tr').removeClass('box').find('.overlay').remove()
+
+            } else {
+                console.error( r )
+            }
+        },
+        error: function ( e ) {
+            console.error( e )
+        }
+    })
 
 }
 
-function delete_row( node, id, url ) {
+function delete_row( node, id, url, deleteCallback ) {
     
     jQuery.ajax({
         url: url,
@@ -137,11 +164,18 @@ function delete_row( node, id, url ) {
         },
         success: function ( r ) {
             if ( r.status == true ) {
+
+                if ( typeof deleteCallback === 'function' ) {
+                    
+                    deleteCallback( r )
+
+                }
                 $(node).closest('tr').slideUp('slow', function() {
 
                     $(node).closest('tr').remove()
 
                 })
+
             } else {
                 console.error( r )
             }

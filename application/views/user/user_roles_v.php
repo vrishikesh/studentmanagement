@@ -48,7 +48,7 @@
                     <td><?php echo $user_role->IS_ADMIN ?></td>
                     <td><?php echo $user_role->USER_ID ?></td>
                     <td>
-                        <a href="#" onclick="edit_row(this, <?php echo $user_role->ID ?>, '<?php echo Url::Site . 'user/user_roles/edit/' . $user_role->ID ?>')"><i class="fa fa-edit"></i></a>
+                        <a href="#" onclick="edit_row(this, <?php echo $user_role->ID ?>, '<?php echo Url::Site . 'user/user_roles/edit/' . $user_role->ID ?>', editCallback)"><i class="fa fa-edit"></i></a>
                         <a href="#" onclick="delete_row(this, <?php echo $user_role->ID ?>, '<?php echo Url::Site . 'user/user_roles/delete/' . $user_role->ID ?>')"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
@@ -146,4 +146,25 @@ $(document).ready(function() {
     })
 
 })
+function editCallback( r ) {
+
+    $('#role_name').val( r.NAME )
+    $('#role_desc').val( r.DESCRIPTION )
+    const permissionList = r.PERMISSIONS.split(',')
+    for (const module of document.querySelectorAll('[name^="module"]')) {
+        
+        const moduleId = $(module).data('id') + ""
+        if( permissionList.indexOf( moduleId ) !== -1 ) {
+
+            $(module).iCheck('check')
+
+        } else {
+
+            $(module).iCheck('uncheck')
+
+        }
+
+    }
+
+}
 </script>
