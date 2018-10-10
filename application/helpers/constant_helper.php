@@ -38,3 +38,14 @@ final class TableType {
           User   = 0;
 
 }
+
+final class UserType {
+
+    private function __construct() {}
+
+    const System       = 0,
+          Organisation = 1,
+          Brand        = 2,
+          User         = 3;
+
+}

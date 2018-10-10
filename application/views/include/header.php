@@ -14,15 +14,19 @@
   <link rel="stylesheet" href="<?php echo Url::Plugin ?>font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo Url::Plugin ?>Ionicons/css/ionicons.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>icheck/all.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>pace/pace.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>select2/dist/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo Url::Framework ?>adminlte/css/adminlte.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="<?php echo Url::Plugin ?>icheck/square/blue.css">
-  <link rel="stylesheet" href="<?php echo Url::Plugin ?>pace/pace.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo Url::Framework ?>adminlte/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?php echo Url::Assets ?>css/common.css">
+
+  <!-- jQuery 3 -->
+  <script src="<?php echo Url::Plugin ?>jquery/dist/jquery.min.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

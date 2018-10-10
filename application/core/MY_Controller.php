@@ -73,12 +73,12 @@ class Admin_Controller extends MY_Controller
         else
         {
             /* Load library function  */
-            $this->breadcrumbs->unshift(0, 'Dashboard', 'admin/dashboard');
+            // $this->breadcrumbs->unshift(0, 'Dashboard', 'admin/dashboard');
 
             /* Data */
-            $this->data['title']       = $this->config->item('title');
-            $this->data['title_lg']    = $this->config->item('title_lg');
-            $this->data['title_mini']  = $this->config->item('title_mini');
+            // $this->data['title']       = $this->config->item('title');
+            // $this->data['title_lg']    = $this->config->item('title_lg');
+            // $this->data['title_mini']  = $this->config->item('title_mini');
         }
     }
 }
