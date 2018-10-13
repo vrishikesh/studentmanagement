@@ -24,47 +24,19 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+            <input type="hidden" id="serialized_table_data" value="<?php echo $serialized_table_data ?>">
             <table class="table table-bordered table-hover dataTable">
             <thead>
             <tr>
-                <th>Role Name</th>
-                <th>Description</th>
-                <th>Color</th>
-                <th>Permissions</th>
-                <th>Is Admin</th>
-                <th>User</th>
+                <th><?php echo implode('</th><th>', $table_columns) ?></th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <?php 
-            if ( ! empty( $user_roles ) ) {
-                foreach ($user_roles as $user_role) { ?>
-                <tr>
-                    <td><?php echo $user_role->NAME ?></td>
-                    <td><?php echo $user_role->DESCRIPTION ?></td>
-                    <td><?php echo $user_role->BGCOLOR ?></td>
-                    <td><?php echo $user_role->PERMISSIONS ?></td>
-                    <td><?php echo $user_role->IS_ADMIN ?></td>
-                    <td><?php echo $user_role->USER_ID ?></td>
-                    <td>
-                        <a href="#" onclick="edit_row(this, <?php echo $user_role->ID ?>, '<?php echo Url::Site . 'user/user_roles/edit/' . $user_role->ID ?>', editCallback)"><i class="fa fa-edit"></i></a>
-                        <a href="#" onclick="delete_row(this, <?php echo $user_role->ID ?>, '<?php echo Url::Site . 'user/user_roles/delete/' . $user_role->ID ?>')"><i class="fa fa-trash-o"></i></a>
-                    </td>
-                </tr>
-            <?php }
-            } else { ?>
-                <tr><td colspan="6"></tr>
-            <?php } ?>
             </tbody>
             <tfoot>
             <tr>
-                <th>Role Name</th>
-                <th>Description</th>
-                <th>Color</th>
-                <th>Permissions</th>
-                <th>Is Admin</th>
-                <th>User</th>
+                <th><?php echo implode('</th><th>', $table_columns) ?></th>
                 <th>Actions</th>
             </tr>
             </tfoot>
@@ -167,4 +139,5 @@ function editCallback( r ) {
     }
 
 }
+function deleteCallback( r ) { }
 </script>

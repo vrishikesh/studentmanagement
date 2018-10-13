@@ -43,7 +43,8 @@ jQuery(document).ready(function () {
             },
             success: function ( r ) {
                 if ( r.status == true ) {
-                    loadContent( location.href )
+                    // loadContent( location.href )
+                    oTable.ajax.reload( null, false )
                     $('#modal-default').modal('hide')
                 } else {
                     console.error( r )
@@ -76,14 +77,54 @@ function updateUIOnPage(params) {
         radioClass: 'iradio_minimal-blue'
     })
 
-    $('.dataTable').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
+    var pagelength = parseInt( localStorage.getItem('pagelength110456289') );
+	pagelength = isNaN( pagelength ) ? 10 : pagelength;
+    window.oTable = $('.dataTable').DataTable({
+        'paging'        : true,
+        'lengthChange'  : true,
+        'searching'     : true,
+        'ordering'      : false,
+        'info'          : true,
+        'autoWidth'     : true,
+        'processing'    : true,
+        'serverSide'    : true,
+        'sServerMethod' : 'POST',
+        'pageLength'    : pagelength,
+        'ajax'          : {
+
+            url : site_url + 'common/common/get_table_data',
+            type: 'post',
+            data: { 'serialized_table_data' : $('#serialized_table_data').val() },
+            complete: function() {
+                // jQuery('.datatable').find('tbody tr').each(function(i, v) {
+                //     jQuery(this).find('td:not(:first):not(:last)').css('cursor', 'pointer');
+                //     jQuery(this).find('td:not(:first):not(:last)').click(function() {
+                //         var $span = jQuery(this).parent().find("[title=Edit]");
+                //         if( $span.length > 0 )
+                //         {
+                //             var href = $span.parent().attr('href');
+                //             if( href )
+                //                 location.href = href;
+                //         }
+                //     });
+                // });
+            }
+
+        },
+        'columnDefs': [{
+            'targets'       : 0,
+            'searchable'    : false,
+            'orderable'     : false,
+            'visible'       : false,
+            'className'     : 'dt-body-center'
+        }]
     })
+
+    $('select[name="DataTables_Table_0_length"]').change(function() {
+
+		localStorage.setItem('pagelength110456289', jQuery(this).val());
+		
+	});
 
     $('.select2').select2()
 

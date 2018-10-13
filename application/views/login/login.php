@@ -8,7 +8,7 @@
 
     <form action="<?php echo Url::Site . 'login/login/validate_login' ?>" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email" name="email">
+        <input type="text" class="form-control" placeholder="Username / Email" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

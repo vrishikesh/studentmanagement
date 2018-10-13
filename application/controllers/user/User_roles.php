@@ -14,7 +14,22 @@ class User_roles extends Admin_Controller {
 
 	public function index() {
 		
-		$data['user_roles'] = $this->dbh->all('user_roles_vw', 'ID, NAME, DESCRIPTION, BGCOLOR, PERMISSIONS, IS_ADMIN, USER_ID', [], '', 'ID DESC')->result();
+		$serialize['table_name'] = 'user_roles_vw';
+		$table_columns = array( 
+			'ID' => 'ID', 
+			'NAME' => 'Name', 
+			'DESCRIPTION' => 'Description', 
+			'BGCOLOR' => 'Color', 
+			'PERMISSIONS' => 'Permissions', 
+			'USER_ID' => 'User' 
+		);
+		$data['table_columns'] = array_values( $table_columns );
+		$serialize['table_columns'] = implode( ',', array_keys( $table_columns ) );
+		$serialize['table_where'] = [];
+		$serialize['table_group_by'] = '';
+		$serialize['table_order_by'] = 'ID DESC';
+		$data['serialized_table_data'] = urlencode( serialize( $serialize ) );
+		
 		$data['generated_module_list'] = $this->generate_module_list();
 		$this->render->view('user/user_roles_v', $data);
 	
@@ -29,10 +44,17 @@ class User_roles extends Admin_Controller {
 	public function save() {
 
 		$id = $this->input->post('id');
+		$module = $this->input->post('module');
+		$permissions = '';
+		if ( is_array( $module ) ) {
+			
+			$permissions = implode(',', array_keys( $module ));
+
+		}
 		$upsert_data = array(
 			'NAME' => $this->input->post('role_name'),
 			'DESCRIPTION' => $this->input->post('role_desc'),
-			'PERMISSIONS' => implode(',', array_keys( $this->input->post('module') ))
+			'PERMISSIONS' => $permissions
 		);
 		if ( ! $id ) {
 

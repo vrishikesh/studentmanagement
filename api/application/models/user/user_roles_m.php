@@ -2,8 +2,8 @@
 
 class User_roles_m extends CI_Model {
 
-    private $table = 'user_roles';
-    private $view = 'user_roles_vw';
+    const TABLE = 'user_roles';
+    const VIEW = 'user_roles_vw';
 
     public function __construct() {
 

@@ -620,7 +620,8 @@ if ( ! function_exists('_error_handler'))
 		// Should we display the error?
 		if (str_ireplace(array('off', 'none', 'no', 'false', 'null'), '', ini_get('display_errors')))
 		{
-			$_error->show_php_error($severity, $message, $filepath, $line);
+			// $_error->show_php_error($severity, $message, $filepath, $line);
+			throw new ErrorException($message, 0, $severity, $filepath, $line);
 		}
 
 		// If the error is fatal, the execution of the script should be stopped because
