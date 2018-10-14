@@ -12,6 +12,7 @@ class MY_Controller extends CI_Controller
         // $this->output->enable_profiler();
         $this->load->library(array('form_validation', 'mobile_detect', 'page_title', 'breadcrumbs', 'session', 'user', 'render'));
         $this->load->helper(array('array', 'language', 'url', 'menu', 'constant'));
+        $this->lang->load('common');
         
         /* Data */
         // $this->data['lang']           = element($this->config->item('language'), $this->config->item('language_abbr'));

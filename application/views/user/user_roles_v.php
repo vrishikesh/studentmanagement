@@ -1,13 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-    User Roles
-    <small>user role list</small>
+    <?php echo $module_name ?>
+    <!-- <small>user role list</small> -->
     </h1>
     <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Administration</a></li>
-    <li class="active">User Roles</li>
+    <li><a href="#"><i class="fa fa-dashboard"></i> <?php echo $home ?></a></li>
+    <li><a href="#"><?php echo $module_name ?></a></li>
+    <li class="active"><?php echo $page_title ?></li>
     </ol>
 </section>
 
@@ -17,9 +17,9 @@
     <div class="col-xs-12">
         <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">User Roles</h3>
+            <h3 class="box-title"><?php echo $page_title ?></h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-default" onclick="add_row()"><i class="fa fa-plus"></i> Add User Role</button>
+                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-default" onclick="add_row()"><i class="fa fa-plus"></i> <?php echo $add_form_button ?></button>
             </div>
         </div>
         <!-- /.box-header -->

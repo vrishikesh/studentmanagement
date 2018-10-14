@@ -9,6 +9,7 @@ class User_roles extends Admin_Controller {
 		// load model, library or helper
 
 		$this->load->model(Path::Model . 'user/user_roles_m');
+		$this->lang->load('user/user_roles');
 	
 	}
 
@@ -16,12 +17,12 @@ class User_roles extends Admin_Controller {
 		
 		$serialize['table_name'] = 'user_roles_vw';
 		$table_columns = array( 
-			'ID' => 'ID', 
-			'NAME' => 'Name', 
-			'DESCRIPTION' => 'Description', 
-			'BGCOLOR' => 'Color', 
-			'PERMISSIONS' => 'Permissions', 
-			'USER_ID' => 'User' 
+			'ID' => $this->lang->line('ID'), 
+			'NAME' => $this->lang->line('NAME'), 
+			'DESCRIPTION' => $this->lang->line('DESCRIPTION'), 
+			'BGCOLOR' => $this->lang->line('BGCOLOR'), 
+			'PERMISSIONS' => $this->lang->line('PERMISSIONS'), 
+			'USER_ID' => $this->lang->line('USER_ID') 
 		);
 		$data['table_columns'] = array_values( $table_columns );
 		$serialize['table_columns'] = implode( ',', array_keys( $table_columns ) );
@@ -29,6 +30,11 @@ class User_roles extends Admin_Controller {
 		$serialize['table_group_by'] = '';
 		$serialize['table_order_by'] = 'ID DESC';
 		$data['serialized_table_data'] = urlencode( serialize( $serialize ) );
+
+		$data['module_name'] = $this->lang->line('module_name');
+		$data['page_title'] = $this->lang->line('page_title');
+		$data['add_form_button'] = $this->lang->line('add_form_button');
+		$data['home'] = $this->lang->line('home');
 		
 		$data['generated_module_list'] = $this->generate_module_list();
 		$this->render->view('user/user_roles_v', $data);
