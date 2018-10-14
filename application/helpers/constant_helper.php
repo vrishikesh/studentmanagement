@@ -17,7 +17,11 @@ final class Path {
 
     private function __construct() {}
     
-    const Model   = '../../api/application/models/';
+    const Model     = '../../api/application/models/';
+    const Base      = FCPATH;
+    const Assets    = self::Base . 'assets/';
+    const Framework = self::Assets . 'frameworks/';
+    const Plugin    = self::Assets . 'plugins/';
 
 }
 

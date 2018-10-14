@@ -219,6 +219,10 @@
 <script src="<?php echo Url::Plugin ?>select2/dist/js/select2.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?php echo Url::Framework ?>adminlte/js/demo.js"></script> -->
+<script src="<?php echo Url::Assets ?>js/load_from_local.js"></script>
 <script src="<?php echo Url::Assets ?>js/common.js"></script>
+<?php if ( file_exists( Path::Assets . 'js/' . $this->uri->segment(1) . '/' . $this->router->class . '.js' ) ) { ?>
+  <script src="<?php echo Url::Assets . 'js/' . $this->uri->segment(1) . '/' . $this->router->class ?>.js"></script>
+<?php } ?>
 </body>
 </html>

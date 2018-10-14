@@ -50,7 +50,8 @@
     </div>
     <!-- /.row -->
 
-    <div class="modal fade" id="modal-default">
+    <?php echo $generated_form ?>
+    <!-- <div class="modal fade" id="modal-default">
         <div class="modal-dialog modal-lg">
             <div class="modal-content box">
                 <form role="form" class="submitForm" action="<?php echo Url::Site . 'user/user_roles/save' ?>" method="POST">
@@ -74,7 +75,7 @@
                             <div class="form-group col-sm-6">
                                 <label for="assigned_list">Module List</label>
                                 <div class="form-control module-list">
-                                    <?php echo $generated_module_list ?>
+                                    <?php // echo $generated_module_list ?>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6">
@@ -94,50 +95,9 @@
                 </form>
                 <div class="overlay" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div>
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-content ->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
+        <!-- /.modal-dialog ->
+    </div> -->
 </section>
 <!-- /.content -->
-<script>
-$(document).ready(function() {
-
-    $('#selectall').on('ifChecked', function() {
-
-        $('#unselectall').iCheck('uncheck')
-        $('.module-list :checkbox').iCheck('check')
-
-    })
-
-    $('#unselectall').on('ifChecked', function() {
-
-        $('#selectall').iCheck('uncheck')
-        $('.module-list :checkbox').iCheck('uncheck')
-
-    })
-
-})
-function editCallback( r ) {
-
-    $('#role_name').val( r.NAME )
-    $('#role_desc').val( r.DESCRIPTION )
-    const permissionList = r.PERMISSIONS.split(',')
-    for (const module of document.querySelectorAll('[name^="module"]')) {
-        
-        const moduleId = $(module).data('id') + ""
-        if( permissionList.indexOf( moduleId ) !== -1 ) {
-
-            $(module).iCheck('check')
-
-        } else {
-
-            $(module).iCheck('uncheck')
-
-        }
-
-    }
-
-}
-function deleteCallback( r ) { }
-</script>

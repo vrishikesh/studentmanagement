@@ -43,7 +43,6 @@ jQuery(document).ready(function () {
             },
             success: function ( r ) {
                 if ( r.status == true ) {
-                    // loadContent( location.href )
                     oTable.ajax.reload( null, false )
                     $('#modal-default').modal('hide')
                 } else {
@@ -139,6 +138,8 @@ function loadContent( href ) {
         success: function ( r ) {
             if ( r.trim() ) {
                 jQuery('.content-wrapper').html( r )
+                var controller = href.replace( site_url, '' )
+                cachedScript(site_url + 'assets/js/' + controller + '.js')
                 var ix = href.lastIndexOf('/')
                 var page = href.substring(ix)
                 history.pushState({}, page, href)

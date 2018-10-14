@@ -10,6 +10,8 @@ $lang['main_navigation'] = 'Main Navigation';
 $lang['online'] = 'Online';
 $lang['offline'] = 'Offline';
 $lang['home'] = 'Home';
+$lang['save_changes'] = 'Save Changes';
+$lang['close'] = 'Close';
 
 // Module Names
 $lang['module_dashboard'] = 'Dashboard';

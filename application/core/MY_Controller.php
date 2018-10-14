@@ -10,8 +10,8 @@ class MY_Controller extends CI_Controller
         /* COMMON :: ADMIN & PUBLIC */
         /* Load */
         // $this->output->enable_profiler();
-        $this->load->library(array('form_validation', 'mobile_detect', 'page_title', 'breadcrumbs', 'session', 'user', 'render'));
-        $this->load->helper(array('array', 'language', 'url', 'menu', 'constant'));
+        $this->load->library(array('form_validation', 'mobile_detect', 'page_title', 'breadcrumbs', 'session', 'user', 'render', 'form'));
+        $this->load->helper(array('array', 'language', 'url', 'menu', 'constant', 'form'));
         $this->lang->load('common');
         
         /* Data */

@@ -15,14 +15,14 @@ class User_roles extends Admin_Controller {
 
 	public function index() {
 		
+		// Generate Dynamic Listview
 		$serialize['table_name'] = 'user_roles_vw';
 		$table_columns = array( 
 			'ID' => $this->lang->line('ID'), 
 			'NAME' => $this->lang->line('NAME'), 
 			'DESCRIPTION' => $this->lang->line('DESCRIPTION'), 
 			'BGCOLOR' => $this->lang->line('BGCOLOR'), 
-			'PERMISSIONS' => $this->lang->line('PERMISSIONS'), 
-			'USER_ID' => $this->lang->line('USER_ID') 
+			'PERMISSIONS' => $this->lang->line('PERMISSIONS') 
 		);
 		$data['table_columns'] = array_values( $table_columns );
 		$serialize['table_columns'] = implode( ',', array_keys( $table_columns ) );
@@ -31,14 +31,44 @@ class User_roles extends Admin_Controller {
 		$serialize['table_order_by'] = 'ID DESC';
 		$data['serialized_table_data'] = urlencode( serialize( $serialize ) );
 
+		// Load language
 		$data['module_name'] = $this->lang->line('module_name');
 		$data['page_title'] = $this->lang->line('page_title');
 		$data['add_form_button'] = $this->lang->line('add_form_button');
 		$data['home'] = $this->lang->line('home');
-		
-		$data['generated_module_list'] = $this->generate_module_list();
-		$this->render->view('user/user_roles_v', $data);
+
+		// Generate Dynamic Form
+		$data['generated_form'] = $this->generate_form( $data['add_form_button'], $this->generate_module_list() );
+
+		$this->render->view('datatables', $data);
 	
+	}
+
+	function generate_form( $modal_title, $generated_module_list ) {
+
+		return $this->form->open( $modal_title, Url::Site . 'user/user_roles/save', array(
+							'class' => 'submitForm'
+						) )
+						->row_open()
+							->input(array(
+								'name' => 'role_name',
+								'id' => 'role_name',
+								'class' => 'form-control',
+								'placeholder' => "Enter Role Name",
+							), 'Role Name')
+							->input(array(
+								'name' => 'role_desc',
+								'id' => 'role_desc',
+								'class' => 'form-control',
+								'placeholder' => "Enter Description",
+							), 'Description')
+						->row_close()
+						->row_open()
+							->module_list( $generated_module_list )
+						->row_close()
+						->close()
+						->to_html();
+
 	}
 
 	public function generate_module_list() {
@@ -104,4 +134,5 @@ class User_roles extends Admin_Controller {
 				->set_output(json_encode(array('status' => TRUE)));
 
 	}
+
 }
