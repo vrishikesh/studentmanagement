@@ -1,6 +1,8 @@
 base_url = jQuery('#base_url').val()
 site_url = jQuery('#site_url').val()
 
+var loaded_scripts = [];
+
 jQuery(document).ajaxStart(function () {
     Pace.restart();
 })
@@ -60,7 +62,12 @@ jQuery(document).ready(function () {
     })
 
     updateUIOnPage()
+    var $cjs = $('#controller_js')
+    if ( $cjs.length ) {
+        
+        loaded_scripts.push( $cjs.attr('src') )
 
+    }
 })
 
 function updateUIOnPage(params) {
@@ -139,7 +146,12 @@ function loadContent( href ) {
             if ( r.trim() ) {
                 jQuery('.content-wrapper').html( r )
                 var controller = href.replace( site_url, '' )
-                cachedScript(site_url + 'assets/js/' + controller + '.js')
+                var js_url = site_url + 'assets/js/' + controller + '.js';
+                if ( $.inArray( js_url, loaded_scripts ) === -1 ) {
+                    
+                    cachedScript( js_url )
+
+                }
                 var ix = href.lastIndexOf('/')
                 var page = href.substring(ix)
                 history.pushState({}, page, href)
