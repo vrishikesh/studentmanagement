@@ -48,7 +48,8 @@ class Login extends Public_Controller {
         unset( $data['PASSWORD'] );
         $data['logged_in'] = TRUE;
         $this->session->set_userdata( $data );
-        $this->session->set_userdata( 'permission_list', $this->user_roles_m->get_module_list() );
+        $this->session->set_userdata( 'permission_list', serialize( $this->user_roles_m->get_module_list() ) );
+        $this->session->set_userdata( 'priority', $this->dbh->field('user_roles', 'ID', $this->user->user_role_id(), 'PRIORITY' ) );
 
         redirect('student/student_details');
 <<<<<<< HEAD

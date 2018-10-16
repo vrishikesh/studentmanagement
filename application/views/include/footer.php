@@ -3,10 +3,9 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 0.0.1
+      <?php echo $this->lang->line('version') ?>
     </div>
-    <strong>Copyright &copy; 2018 <a href="#">Inspire Studios</a>.</strong> All rights
-    reserved.
+    <?php echo $this->lang->line('copyright') ?>
   </footer>
 
   <!-- Control Sidebar -->
@@ -220,6 +219,10 @@
 <script src="<?php echo Url::Plugin ?>select2/dist/js/select2.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?php echo Url::Framework ?>adminlte/js/demo.js"></script> -->
+<script src="<?php echo Url::Assets ?>js/load_from_local.js"></script>
 <script src="<?php echo Url::Assets ?>js/common.js"></script>
+<?php if ( file_exists( Path::Assets . 'js/' . $this->uri->segment(1) . '/' . $this->router->class . '.js' ) ) { ?>
+  <script id="controller_js" src="<?php echo Url::Assets . 'js/' . $this->uri->segment(1) . '/' . $this->router->class ?>.js"></script>
+<?php } ?>
 </body>
 </html>

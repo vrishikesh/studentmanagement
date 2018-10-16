@@ -51,6 +51,12 @@ class User {
         return $this->CI->session->permission_list;
 
     }
+    
+    public function priority() {
+
+        return $this->CI->session->priority;
+
+    }
 
     public function logout() {
 
