@@ -45,6 +45,23 @@ class Form {
         return $this;
 
     }
+    
+    function textarea($data = '', $label_text = '') {
+
+        $id = $value = $extra = '';
+        $parent_class = 'form-group col-sm-6';
+        if ( is_array( $data ) ) {
+
+            $id = $data['id'] ?? '';
+            $value = $data['value'] ?? '';
+            $extra = $data['extra'] ?? '';
+            $parent_class = $data['parent_class'] ?? 'form-group col-sm-6';
+
+        }
+        $this->_html .= '<div class="' . $parent_class . '"><label for="'. $id .'">'. $label_text .'</label>'. form_textarea($data, $value ?? '', $extra ?? '') .'</div>';
+        return $this;
+
+    }
 
     function row_close() {
 
