@@ -121,7 +121,7 @@ class CI_Db_helper {
         $data['UPDATED_BY'] = $this->CI->user->user_id();
         $this->CI->db->where($where);
         $this->CI->db->update($table, $data);
-        return $this->CI->db->affected_rows();
+        return $this->CI->db->affected_rows() >= 0;
 
     }
 
@@ -133,7 +133,7 @@ class CI_Db_helper {
 
         $this->CI->db->where($where);
         $this->CI->db->update($table, ['IS_DELETED' => Deleted::Yes]);
-        return $this->CI->db->affected_rows();
+        return $this->CI->db->affected_rows() >= 0;
 
     }
 

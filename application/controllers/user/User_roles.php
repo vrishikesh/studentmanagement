@@ -119,19 +119,11 @@ class User_roles extends Admin_Controller {
 			);
 			if ( ! $id ) {
 	
-				if( $this->dbh->insert('user_roles', $upsert_data) ) {
-
-					$status = TRUE;
-
-				}
+				$status = $this->dbh->insert('user_roles', $upsert_data) ? TRUE : FALSE;
 	
 			} else {
 	
-				if( $this->dbh->update('user_roles', $upsert_data, ['ID' => $id]) >= 0 ) {
-
-					$status = TRUE;
-
-				}
+				$status = $this->dbh->update('user_roles', $upsert_data, ['ID' => $id]);
 	
 			}
 
@@ -163,12 +155,7 @@ class User_roles extends Admin_Controller {
 
 	public function delete( $id ) {
 
-		$status = FALSE;
-		if( $this->dbh->delete('user_roles', ['ID' => $id]) >= 0 ) {
-
-			$status = TRUE;
-
-		}
+		$status = $this->dbh->delete('user_roles', ['ID' => $id]);
 		$this->output
 				->set_content_type('application/json')
 				->set_output(json_encode(compact('status')));
