@@ -15,4 +15,5 @@ $lang['NAME'] = 'Name';
 $lang['DESCRIPTION'] = 'Description';
 $lang['BGCOLOR'] = 'Color';
 $lang['PERMISSIONS'] = 'Permissions';
+$lang['PRIORITY'] = 'Priority';
 $lang['USER_ID'] = 'User';

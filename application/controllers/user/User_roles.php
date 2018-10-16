@@ -22,7 +22,8 @@ class User_roles extends Admin_Controller {
 			'NAME' => $this->lang->line('NAME'), 
 			'DESCRIPTION' => $this->lang->line('DESCRIPTION'), 
 			'BGCOLOR' => $this->lang->line('BGCOLOR'), 
-			'PERMISSIONS' => $this->lang->line('PERMISSIONS') 
+			'PERMISSIONS' => $this->lang->line('PERMISSIONS'), 
+			'PRIORITY' => $this->lang->line('PRIORITY'), 
 		);
 		$data['table_columns'] = array_values( $table_columns );
 		$serialize['table_columns'] = implode( ',', array_keys( $table_columns ) );
@@ -57,10 +58,20 @@ class User_roles extends Admin_Controller {
 								'placeholder' => "Enter Role Name",
 							), 'Role Name')
 							->input(array(
+								'name' => 'priority',
+								'id' => 'priority',
+								'class' => 'form-control',
+								'placeholder' => "Enter Priority",
+							), 'Priority')
+						->row_close()
+						->row_open()
+							->textarea(array(
 								'name' => 'role_desc',
 								'id' => 'role_desc',
 								'class' => 'form-control',
 								'placeholder' => "Enter Description",
+								'rows' => 5,
+								'parent_class' => 'form-group col-sm-12',
 							), 'Description')
 						->row_close()
 						->row_open()
@@ -79,6 +90,8 @@ class User_roles extends Admin_Controller {
 
 	public function save() {
 
+		$status = FALSE;
+		$msg = '';
 		$id = $this->input->post('id');
 		$module = $this->input->post('module');
 		$permissions = '';
@@ -87,23 +100,45 @@ class User_roles extends Admin_Controller {
 			$permissions = implode(',', array_keys( $module ));
 
 		}
-		$upsert_data = array(
-			'NAME' => $this->input->post('role_name'),
-			'DESCRIPTION' => $this->input->post('role_desc'),
-			'PERMISSIONS' => $permissions
-		);
-		if ( ! $id ) {
 
-			$this->dbh->insert('user_roles', $upsert_data);
+		$this->form_validation->set_rules('role_name', $this->lang->line('NAME'), 'trim|required');
+        $this->form_validation->set_rules('role_desc', $this->lang->line('DESCRIPTION'), 'trim');
+		$this->form_validation->set_rules('priority',  $this->lang->line('PRIORITY'), 'trim|required');
 
-		} else {
+        if ($this->form_validation->run() == FALSE) {
 
-			$this->dbh->update('user_roles', $upsert_data, ['ID' => $id]);
+			$msg = validation_errors();
+			
+        } else {
+
+			$upsert_data = array(
+				'NAME' => $this->input->post('role_name'),
+				'DESCRIPTION' => $this->input->post('role_desc'),
+				'PERMISSIONS' => $permissions,
+				'PRIORITY' => $this->input->post('priority'),
+			);
+			if ( ! $id ) {
+	
+				if( $this->dbh->insert('user_roles', $upsert_data) ) {
+
+					$status = TRUE;
+
+				}
+	
+			} else {
+	
+				if( $this->dbh->update('user_roles', $upsert_data, ['ID' => $id]) >= 0 ) {
+
+					$status = TRUE;
+
+				}
+	
+			}
 
 		}
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode(array('status' => TRUE)));
+				->set_output(json_encode(compact('status', 'msg')));
 
 	}
 
@@ -128,10 +163,15 @@ class User_roles extends Admin_Controller {
 
 	public function delete( $id ) {
 
-		$this->dbh->delete('user_roles', ['ID' => $id]);
+		$status = FALSE;
+		if( $this->dbh->delete('user_roles', ['ID' => $id]) >= 0 ) {
+
+			$status = TRUE;
+
+		}
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode(array('status' => TRUE)));
+				->set_output(json_encode(compact('status')));
 
 	}
 
