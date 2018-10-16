@@ -18,6 +18,14 @@ class Form {
         $this->_html .= '<div class="modal fade" id="modal-default"><div class="modal-dialog modal-lg"><div class="modal-content box">';
         $this->_html .= form_open($action, $attributes, $hidden);
         $this->_html .= '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h4 class="modal-title">'. $title .'</h4></div><div class="modal-body">';
+        $this->_html .= '<div class="row" style="display: none;">
+            <div class="form-group col-sm-12">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                </div>
+            </div>
+        </div>';
         return $this;
 
     }

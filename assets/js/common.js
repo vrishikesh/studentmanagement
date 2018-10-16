@@ -48,7 +48,10 @@ jQuery(document).ready(function () {
                     oTable.ajax.reload( null, false )
                     $('#modal-default').modal('hide')
                 } else {
-                    console.error( r )
+                    console.log( r )
+                    $('.modal-body .alert')
+                            .find('p').remove().end()
+                            .append( r.msg ).closest('.row').show()
                 }
             },
             error: function ( e ) {
@@ -171,6 +174,9 @@ function loadContent( href ) {
 function add_row() {
 
     $('#id').val('')
+    $('.modal-body .alert')
+            .find('p').remove().end()
+            .closest('.row').hide()
 
 }
 
@@ -193,6 +199,9 @@ function edit_row( node, id, url, editCallback ) {
                     editCallback( r )
 
                 }
+                $('.modal-body .alert')
+                        .find('p').remove().end()
+                        .closest('.row').hide()
                 $('#modal-default').modal('show')
                 $(node).closest('tr').removeClass('box').find('.overlay').remove()
 
