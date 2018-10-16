@@ -107,7 +107,8 @@ class CI_Db_helper {
             
         }
         $data['CREATED_BY'] = $this->CI->user->user_id();
-        return $this->CI->db->insert($table, $data);
+        $this->CI->db->insert($table, $data);
+        return $this->CI->db->insert_id();
 
     }
 
@@ -119,7 +120,8 @@ class CI_Db_helper {
         
         $data['UPDATED_BY'] = $this->CI->user->user_id();
         $this->CI->db->where($where);
-        return $this->CI->db->update($table, $data);
+        $this->CI->db->update($table, $data);
+        return $this->CI->db->affected_rows();
 
     }
 
@@ -130,7 +132,8 @@ class CI_Db_helper {
     public function delete($table, $where = []) {
 
         $this->CI->db->where($where);
-        return $this->CI->db->update($table, ['IS_DELETED' => Deleted::Yes]);
+        $this->CI->db->update($table, ['IS_DELETED' => Deleted::Yes]);
+        return $this->CI->db->affected_rows();
 
     }
 
