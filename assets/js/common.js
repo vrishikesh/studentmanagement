@@ -48,7 +48,10 @@ jQuery(document).ready(function () {
                     oTable.ajax.reload( null, false )
                     $('#modal-default').modal('hide')
                 } else {
-                    console.error( r )
+                    console.log( r )
+                    $('.modal-body .alert')
+                            .find('p').remove().end()
+                            .append( r.msg ).closest('.row').show()
                 }
             },
             error: function ( e ) {
@@ -147,11 +150,7 @@ function loadContent( href ) {
                 jQuery('.content-wrapper').html( r )
                 var controller = href.replace( site_url, '' )
                 var js_url = site_url + 'assets/js/' + controller + '.js';
-                if ( $.inArray( js_url, loaded_scripts ) === -1 ) {
-                    
-                    cachedScript( js_url )
-
-                }
+                cachedScript( js_url )
                 var ix = href.lastIndexOf('/')
                 var page = href.substring(ix)
                 history.pushState({}, page, href)
@@ -171,6 +170,9 @@ function loadContent( href ) {
 function add_row() {
 
     $('#id').val('')
+    $('.modal-body .alert')
+            .find('p').remove().end()
+            .closest('.row').hide()
 
 }
 
@@ -193,6 +195,9 @@ function edit_row( node, id, url, editCallback ) {
                     editCallback( r )
 
                 }
+                $('.modal-body .alert')
+                        .find('p').remove().end()
+                        .closest('.row').hide()
                 $('#modal-default').modal('show')
                 $(node).closest('tr').removeClass('box').find('.overlay').remove()
 

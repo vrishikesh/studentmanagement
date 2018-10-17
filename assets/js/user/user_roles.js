@@ -19,6 +19,7 @@ $(document).ready(function() {
 function editCallback( r ) {
 
     $('#role_name').val( r.NAME )
+    $('#priority').val( r.PRIORITY )
     $('#role_desc').val( r.DESCRIPTION )
     const permissionList = r.PERMISSIONS.split(',')
     for (const module of document.querySelectorAll('[name^="module"]')) {

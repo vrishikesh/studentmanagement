@@ -9,7 +9,8 @@ final class Url {
     const Site      = BASE_URL,
           Assets    = self::Site . 'assets/',
           Framework = self::Assets . 'frameworks/',
-          Plugin    = self::Assets . 'plugins/';
+          Plugin    = self::Assets . 'plugins/',
+          Current   = CURRENT_URL;
 
 }
 

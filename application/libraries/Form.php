@@ -18,6 +18,14 @@ class Form {
         $this->_html .= '<div class="modal fade" id="modal-default"><div class="modal-dialog modal-lg"><div class="modal-content box">';
         $this->_html .= form_open($action, $attributes, $hidden);
         $this->_html .= '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h4 class="modal-title">'. $title .'</h4></div><div class="modal-body">';
+        $this->_html .= '<div class="row" style="display: none;">
+            <div class="form-group col-sm-12">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                </div>
+            </div>
+        </div>';
         return $this;
 
     }
@@ -29,19 +37,44 @@ class Form {
 
     }
 
-    function input($data = '', $label_text = '') {
+    function input(array $data = [], string $label_text = '') {
 
-        $id = $value = $extra = '';
-        $parent_class = 'form-group col-sm-6';
-        if ( is_array( $data ) ) {
+        $id = $data['id'] ?? '';
+        $value = $data['value'] ?? '';
+        $extra = $data['extra'] ?? '';
+        $parent_class = $data['parent_class'] ?? 'form-group col-sm-6';
+        $required = ( isset( $data['required'] ) AND $data['required'] ) ? ' <span style="color:red;">*</span>' : '';
+        $data['class'] = $data['class'] ?? 'form-control';
 
-            $id = $data['id'] ?? '';
-            $value = $data['value'] ?? '';
-            $extra = $data['extra'] ?? '';
-            $parent_class = $data['parent_class'] ?? 'form-group col-sm-6';
+        $this->_html .= '<div class="' . $parent_class . '"><label for="'. $id .'">'. $label_text . $required .'</label>'. form_input($data, $value, $extra) .'</div>';
+        return $this;
 
-        }
-        $this->_html .= '<div class="' . $parent_class . '"><label for="'. $id .'">'. $label_text .'</label>'. form_input($data, $value ?? '', $extra ?? '') .'</div>';
+    }
+    
+    function textarea(array $data = [], string $label_text = '') {
+
+        $id = $data['id'] ?? '';
+        $value = $data['value'] ?? '';
+        $extra = $data['extra'] ?? '';
+        $parent_class = $data['parent_class'] ?? 'form-group col-sm-6';
+        $required = ( isset( $data['required'] ) AND $data['required'] ) ? ' <span style="color:red;">*</span>' : '';
+        $data['class'] = $data['class'] ?? 'form-control';
+
+        $this->_html .= '<div class="' . $parent_class . '"><label for="'. $id .'">'. $label_text . $required .'</label>'. form_textarea($data, $value, $extra) .'</div>';
+        return $this;
+
+    }
+    
+    function select(array $data = [], string $label_text = '') {
+
+        $id = $data['id'] ?? '';
+        $extra = $data['extra'] ?? '';
+        $parent_class = $data['parent_class'] ?? 'form-group col-sm-6';
+        $required = ( isset( $data['required'] ) AND $data['required'] ) ? ' <span style="color:red;">*</span>' : '';
+        $data['class'] = $data['class'] ?? 'form-control select2';
+        $data['style'] = $data['style'] ?? 'width: 100%;';
+
+        $this->_html .= '<div class="' . $parent_class . '"><label for="'. $id .'">'. $label_text . $required .'</label>'. form_dropdown($data, [], [], $extra) .'</div>';
         return $this;
 
     }
