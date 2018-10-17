@@ -14,12 +14,12 @@ class CI_Db_helper {
      * Get all data
      * 
      **/
-    public function all( string $table, string $select = '*', 
+    public function all( string $view, string $select = '*', 
                 array $where = [], string $group_by = '', 
                 string $order_by = '', int $length = null, int $offset = null )
     {
-        if( substr($table, -3) !== '_vw' )
-            $where['IS_DELETED'] = Deleted::No;
+        if( substr($view, -3) !== '_vw' )
+            throw new Exception('Cannot use table for fetching data');
         
         if ( $this->CI->user->is_admin() == UserType::Organisation ) {
             
@@ -56,7 +56,7 @@ class CI_Db_helper {
             $this->CI->db->limit( $length, $offset );
 
         }
-        return $this->CI->db->get($table);
+        return $this->CI->db->get($view);
     }
 
     /**
@@ -99,39 +99,40 @@ class CI_Db_helper {
      **/
     public function insert($table, $data = [], $audits = TRUE) {
         
-        $user_exception_list = [
-            'users', 'oa_brands', 'org_accounts'
-        ];
-        $brand_exception_list = [
-            'oa_brands', 'org_accounts'
-        ];
-        $org_exception_list = [
-            'org_accounts'
-        ];
         if ( $audits ) {
+
+            $user_exception_list = [
+                'users', 'oa_brands', 'org_accounts'
+            ];
+            $brand_exception_list = [
+                'oa_brands', 'org_accounts'
+            ];
+            $org_exception_list = [
+                'org_accounts'
+            ];
             
             $data['OA_ID'] = $this->CI->user->oa_id();
             $data['OA_BRAND_ID'] = $this->CI->user->oa_brand_id();
             $data['USER_ID'] = $this->CI->user->user_id();
+
+            if ( in_array( $table, $user_exception_list ) ) {
             
-        }
-
-        if ( in_array( $table, $user_exception_list ) ) {
+                unset( $data['USER_ID'] );
+    
+            }
+    
+            if ( in_array( $table, $brand_exception_list ) ) {
+                
+                unset( $data['OA_BRAND_ID'] );
+    
+            }
+    
+            if ( in_array( $table, $org_exception_list ) ) {
+                
+                unset( $data['OA_ID'] );
+    
+            }
             
-            unset( $data['USER_ID'] );
-
-        }
-
-        if ( in_array( $table, $brand_exception_list ) ) {
-            
-            unset( $data['OA_BRAND_ID'] );
-
-        }
-
-        if ( in_array( $table, $org_exception_list ) ) {
-            
-            unset( $data['OA_ID'] );
-
         }
 
         $data['CREATED_BY'] = $this->CI->user->user_id();

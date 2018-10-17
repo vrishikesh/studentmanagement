@@ -134,7 +134,7 @@ class Users extends Admin_Controller {
 		$row  = [];
 		if ( ! empty( $id ) ) {
 			
-			$row = $this->dbh->all('users', '*', ['ID' => $id])->row_array();
+			$row = $this->dbh->all('users_vw', '*', ['ID' => $id])->row_array();
 			if ( $row ) {
 				
 				$status = TRUE;

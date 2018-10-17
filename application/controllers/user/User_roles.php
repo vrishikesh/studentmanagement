@@ -140,7 +140,7 @@ class User_roles extends Admin_Controller {
 		$row  = [];
 		if ( ! empty( $id ) ) {
 			
-			$row = $this->dbh->all('user_roles', '*', ['ID' => $id])->row_array();
+			$row = $this->dbh->all('user_roles_vw', '*', ['ID' => $id])->row_array();
 			if ( $row ) {
 				
 				$status = TRUE;
