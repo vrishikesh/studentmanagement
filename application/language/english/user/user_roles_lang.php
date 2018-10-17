@@ -11,7 +11,7 @@ $lang['select_all'] = 'Select All';
 $lang['unselect_all'] = 'Unselect All';
 
 $lang['ID'] = 'ID';
-$lang['NAME'] = 'Name';
+$lang['NAME'] = 'Role Name';
 $lang['DESCRIPTION'] = 'Description';
 $lang['BGCOLOR'] = 'Color';
 $lang['PERMISSIONS'] = 'Permissions';

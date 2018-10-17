@@ -22,7 +22,7 @@ class User_roles extends Admin_Controller {
 			'NAME' => $this->lang->line('NAME'), 
 			'DESCRIPTION' => $this->lang->line('DESCRIPTION'), 
 			'BGCOLOR' => $this->lang->line('BGCOLOR'), 
-			'PERMISSIONS' => $this->lang->line('PERMISSIONS'), 
+			'PERMISSION_LIST' => $this->lang->line('PERMISSIONS'), 
 			'PRIORITY' => $this->lang->line('PRIORITY'), 
 		);
 		$data['table_columns'] = array_values( $table_columns );
@@ -56,13 +56,13 @@ class User_roles extends Admin_Controller {
 								'id' => 'role_name',
 								'class' => 'form-control',
 								'placeholder' => "Enter Role Name",
-							), 'Role Name')
+							), $this->lang->line('NAME'))
 							->input(array(
 								'name' => 'priority',
 								'id' => 'priority',
 								'class' => 'form-control',
 								'placeholder' => "Enter Priority",
-							), 'Priority')
+							), $this->lang->line('PRIORITY'))
 						->row_close()
 						->row_open()
 							->textarea(array(
@@ -72,7 +72,7 @@ class User_roles extends Admin_Controller {
 								'placeholder' => "Enter Description",
 								'rows' => 5,
 								'parent_class' => 'form-group col-sm-12',
-							), 'Description')
+							), $this->lang->line('DESCRIPTION'))
 						->row_close()
 						->row_open()
 							->module_list( $generated_module_list )
@@ -136,16 +136,19 @@ class User_roles extends Admin_Controller {
 
 	public function edit( $id ) {
 
-		$row = $this->dbh->all('user_roles', '*', ['ID' => $id])->row_array();
-		if ( $row ) {
+		$status = FALSE;
+		$row  = [];
+		if ( ! empty( $id ) ) {
 			
-			$row['status'] = TRUE;
+			$row = $this->dbh->all('user_roles', '*', ['ID' => $id])->row_array();
+			if ( $row ) {
+				
+				$status = TRUE;
 
-		} else {
-
-			$row['status'] = FALSE;
+			}
 
 		}
+		$row['status'] = $status;
 
 		$this->output
 				->set_content_type('application/json')
@@ -155,7 +158,12 @@ class User_roles extends Admin_Controller {
 
 	public function delete( $id ) {
 
-		$status = $this->dbh->delete('user_roles', ['ID' => $id]);
+		$status = FALSE;
+		if ( ! empty( $id ) ) {
+
+			$status = $this->dbh->delete('user_roles', ['ID' => $id]);
+			
+		}
 		$this->output
 				->set_content_type('application/json')
 				->set_output(json_encode(compact('status')));
