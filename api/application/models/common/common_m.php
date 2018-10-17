@@ -36,8 +36,8 @@ class Common_m extends CI_Model {
         foreach ($result as $row) {
             
             $list = array_values( $row );
-            $list[] = '<a href="#" onclick="edit_row(this, ' . $list[0] . ', \'' . Url::Site . 'user/user_roles/edit/' . $list[0] . '\', editCallback)"><i class="fa fa-edit"></i></a>
-            <a href="#" onclick="delete_row(this, ' . $list[0] . ', \'' . Url::Site . 'user/user_roles/delete/' . $list[0] . '\', deleteCallback)"><i class="fa fa-trash-o"></i></a>';
+            $list[] = '<a href="#" onclick="edit_row(this, ' . $list[0] . ', \'' . Url::Current . 'edit/' . $list[0] . '\', editCallback)"><i class="fa fa-edit"></i></a>
+            <a href="#" onclick="delete_row(this, ' . $list[0] . ', \'' . Url::Current . 'delete/' . $list[0] . '\', deleteCallback)"><i class="fa fa-trash-o"></i></a>';
             $return['data'][] = $list;
             
         }

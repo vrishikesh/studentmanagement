@@ -10,9 +10,12 @@ class MY_Controller extends CI_Controller
         /* COMMON :: ADMIN & PUBLIC */
         /* Load */
         // $this->output->enable_profiler();
-        $this->load->library(array('form_validation', 'mobile_detect', 'page_title', 'breadcrumbs', 'session', 'user', 'render', 'form'));
+        $this->load->library(array('form_validation', 'user_agent', 'mobile_detect', 'page_title', 'breadcrumbs', 'session', 'user', 'render', 'form'));
         $this->load->helper(array('array', 'language', 'url', 'menu', 'constant', 'form'));
         $this->lang->load('common');
+        $this->input->is_ajax_request()
+            ? define('CURRENT_URL', $this->agent->referrer() . '/')
+            : define('CURRENT_URL', current_url() . '/');
         
         /* Data */
         // $this->data['lang']           = element($this->config->item('language'), $this->config->item('language_abbr'));
