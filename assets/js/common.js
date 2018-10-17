@@ -150,11 +150,7 @@ function loadContent( href ) {
                 jQuery('.content-wrapper').html( r )
                 var controller = href.replace( site_url, '' )
                 var js_url = site_url + 'assets/js/' + controller + '.js';
-                if ( $.inArray( js_url, loaded_scripts ) === -1 ) {
-                    
-                    cachedScript( js_url )
-
-                }
+                cachedScript( js_url )
                 var ix = href.lastIndexOf('/')
                 var page = href.substring(ix)
                 history.pushState({}, page, href)
