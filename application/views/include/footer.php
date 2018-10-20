@@ -217,6 +217,7 @@
 <script src="<?php echo Url::Plugin ?>datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo Url::Plugin ?>datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo Url::Plugin ?>select2/dist/js/select2.min.js"></script>
+<script src="<?php echo Url::Plugin ?>alertifyjs/alertify.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?php echo Url::Framework ?>adminlte/js/demo.js"></script> -->
 <script src="<?php echo Url::Assets ?>js/load_from_local.js"></script>
