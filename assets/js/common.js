@@ -1,15 +1,13 @@
 base_url = jQuery('#base_url').val()
 site_url = jQuery('#site_url').val()
 
-var loaded_scripts = [];
-
 jQuery(document).ajaxStart(function () {
     Pace.restart();
 })
 
 jQuery(document).ready(function () {
     
-    jQuery(document).on('click', 'a:not([href="#"]):not(.not-ajax)', function(e) {
+    jQuery(document).on('click', 'a:not([target="_blank"]):not([href^="#"]):not(.not-ajax)', function(e) {
 
         var node = this
         e.preventDefault()
@@ -54,8 +52,8 @@ jQuery(document).ready(function () {
                             .append( r.msg ).closest('.row').show()
                 }
             },
-            error: function ( e ) {
-                console.error( e )
+            error: function ( x, e ) {
+                show_error( get_error( x, e ) )
             },
             complete: function() {
                 $(form).siblings('.overlay').hide()
@@ -65,12 +63,6 @@ jQuery(document).ready(function () {
     })
 
     updateUIOnPage()
-    var $cjs = $('#controller_js')
-    if ( $cjs.length ) {
-        
-        loaded_scripts.push( $cjs.attr('src') )
-
-    }
 })
 
 function updateUIOnPage(params) {
@@ -104,6 +96,11 @@ function updateUIOnPage(params) {
             url : site_url + 'common/common/get_table_data',
             type: 'post',
             data: { 'serialized_table_data' : $('#serialized_table_data').val() },
+            error: function( x, e ) {
+
+                show_error( get_error( x, e ) )
+
+            },
             complete: function() {
                 // jQuery('.datatable').find('tbody tr').each(function(i, v) {
                 //     jQuery(this).find('td:not(:first):not(:last)').css('cursor', 'pointer');
@@ -150,18 +147,18 @@ function loadContent( href ) {
                 jQuery('.content-wrapper').html( r )
                 var controller = href.replace( site_url, '' )
                 var js_url = site_url + 'assets/js/' + controller + '.js';
-                cachedScript( js_url )
+                getScript( js_url )
                 var ix = href.lastIndexOf('/')
                 var page = href.substring(ix)
                 history.pushState({}, page, href)
 
                 updateUIOnPage()
             } else {
-                console.error( r )
+                show_error( 'Content not found' )
             }
         },
-        error: function ( e ) {
-            console.error( e )
+        error: function ( x, e ) {
+            show_error( get_error( x, e ) )
         }
     })
 
@@ -202,11 +199,11 @@ function edit_row( node, id, url, editCallback ) {
                 $(node).closest('tr').removeClass('box').find('.overlay').remove()
 
             } else {
-                console.error( r )
+                show_error( r.msg )
             }
         },
-        error: function ( e ) {
-            console.error( e )
+        error: function ( x, e ) {
+            show_error( get_error( x, e ) )
         }
     })
 
@@ -236,12 +233,52 @@ function delete_row( node, id, url, deleteCallback ) {
                 })
 
             } else {
-                console.error( r )
+                show_error( r.msg )
             }
         },
-        error: function ( e ) {
-            console.error( e )
+        error: function ( x, e ) {
+            show_error( get_error( x, e ) )
         }
     })
 
+}
+
+function get_error(x, e) {
+
+    if ( x.status == 0 ) {
+
+        return 'You are offline!!\n Please Check Your Network.'
+
+    } else if( x.status == 404 ) {
+
+        return 'Requested URL not found.'
+
+    } else if( x.status == 500 ) {
+
+        return 'Internel Server Error.'
+
+    } else if( e == 'parsererror' ) {
+
+        return 'Error.\nParsing JSON Request failed.'
+
+    } else if( e == 'timeout' ) {
+
+        return 'Request Time out.'
+
+    } else {
+
+        return x.responseText
+
+    }
+
+}
+
+function show_error( msg = '' ) {
+
+    if ( msg != '' ) {
+        
+        alertify.error( msg );
+
+    }
+    
 }

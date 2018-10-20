@@ -45,7 +45,7 @@ class Users extends Admin_Controller {
 
 	function generate_form( $modal_title ) {
 
-		$result = $this->dbh->all('user_roles', 'ID, NAME')->result();
+		$result = $this->dbh->all('user_roles_vw', 'ID, NAME')->result();
 		$options = [];
 		foreach ($result as $row) $options[ $row->ID ] = $row->NAME;
 
@@ -134,7 +134,7 @@ class Users extends Admin_Controller {
 		$row  = [];
 		if ( ! empty( $id ) ) {
 			
-			$row = $this->dbh->all('users', '*', ['ID' => $id])->row_array();
+			$row = $this->dbh->all('users_vw', '*', ['ID' => $id])->row_array();
 			if ( $row ) {
 				
 				$status = TRUE;

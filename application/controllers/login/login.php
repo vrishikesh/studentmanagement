@@ -17,7 +17,8 @@ class Login extends Public_Controller {
 >>>>>>> r
 	public function index()
 	{
-		$this->render->view('login/login');
+        $data['app_name'] = $this->lang->line('app_name');
+		$this->render->view('login/login', $data);
     }
     
     public function validate_login()

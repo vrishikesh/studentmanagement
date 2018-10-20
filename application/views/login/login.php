@@ -1,6 +1,6 @@
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?php echo Url::Site ?>"><b>School</b>Management</a>
+    <a href="<?php echo Url::Site ?>" class="not-ajax"><?php echo $app_name ?></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -32,7 +32,7 @@
     </form>
 
     <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a School</a>
+    <a href="<?php echo Url::Site . 'login/register_org' ?>" class="text-center not-ajax">Register an Organisation</a>
 
   </div>
   <!-- /.login-box-body -->

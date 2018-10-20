@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="<?php echo Url::Plugin ?>pace/pace.min.css">
   <link rel="stylesheet" href="<?php echo Url::Plugin ?>select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo Url::Plugin ?>datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo Url::Plugin ?>alertifyjs/css/alertify.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo Url::Framework ?>adminlte/css/adminlte.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
