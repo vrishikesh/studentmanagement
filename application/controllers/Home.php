@@ -13,6 +13,7 @@ class Home extends Public_Controller {
 
 	public function index()
 	{
-		$this->render->view('login/login');
+		$data['app_name'] = $this->lang->line('app_name');
+		$this->render->view('login/login', $data);
 	}
 }

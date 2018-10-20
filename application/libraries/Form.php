@@ -100,7 +100,9 @@ class Form {
 
     function to_html() {
 
-        return $this->_html;
+        $return_html = $this->_html;
+        $this->_html = '';
+        return $return_html;
 
     }
 
